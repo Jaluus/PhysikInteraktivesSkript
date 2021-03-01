@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p>Lattice tests</p>
+    <div style="height: 600px; width: 600px" id="latticeCanvas"></div>
+    <br />
+    <input onclick="toggleOrtho()" type="checkbox" checked /> Orthographic
+    Camera <input onclick="toggleRepeat()" type="checkbox" /> Repeat
+    <input onclick="toggleConnect()" type="checkbox" /> Connect Closest
+    <br />
+    <button onclick="toggleGrid(0)">SC</button>
+    <button onclick="toggleGrid(1)">BCC</button>
+    <button onclick="toggleGrid(2)">FCC</button>
+    <button onclick="toggleGrid(3)">DIAMOND</button>
+  </body>
+  <script src="sketch.js"></script>
+</html>
