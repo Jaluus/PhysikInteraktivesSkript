@@ -1,0 +1,19 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+canvas {
+  display: block;
+}
+
+button {
+  margin: 1em;
+}
+
+.canvas {
+  height: 600px;
+  width: 600px;
+  margin: auto;
+}

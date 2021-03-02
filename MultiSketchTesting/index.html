@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <div>
+      <p>2D Lattice</p>
+      <div
+        style="height: 500px; width: 400px"
+        class="canvas"
+        id="2dBravais"
+      ></div>
+    </div>
+    <div>
+      <p>Lattice tests</p>
+      <div
+        style="height: 600px; width: 600px"
+        class="canvas"
+        id="3dBravais"
+      ></div>
+      <br />
+      <input onclick="toggleOrtho()" type="checkbox" checked /> Orthographic
+      Camera <input onclick="toggleRepeat()" type="checkbox" /> Repeat
+      <input onclick="toggleConnect()" type="checkbox" /> Connect Closest
+      <br />
+      <button onclick="toggleGrid(0)">SC</button>
+      <button onclick="toggleGrid(1)">BCC</button>
+      <button onclick="toggleGrid(2)">FCC</button>
+      <button onclick="toggleGrid(3)">DIAMOND</button>
+    </div>
+  </body>
+  <script src="3DBravais.js"></script>
+  <script src="2DBravais.js"></script>
+</html>

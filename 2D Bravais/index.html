@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p>2D Lattice</p>
+    <div
+      style="height: 500px; width: 400px"
+      class="canvas"
+      id="2dBravais"
+    ></div>
+    <br />
+    <select name="Gittertypen" id="2dBravaisSelect">
+      <option value="1">Quadratisch</option>
+      <option value="2">Schiefwinklig</option>
+      <option value="3">Rechtwinklig</option>
+      <option value="4">Zentriert-rechteckig</option>
+      <option value="5">Hexagonal</option>
+    </select>
+    <br />
+    <br />
+    <input
+      type="range"
+      min="10"
+      max="100"
+      value="50"
+      class="slider"
+      id="2dBravaisSliderA"
+    />A
+    <input
+      type="range"
+      min="10"
+      max="100"
+      value="50"
+      class="slider"
+      id="2dBravaisSliderB"
+    />B
+    <input
+      type="range"
+      min="-50"
+      max="50"
+      value="0"
+      class="slider"
+      id="2dBravaisSliderC"
+    />C
+  </body>
+  <script src="2DBravais.js"></script>
+</html>

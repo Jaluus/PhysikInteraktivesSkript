@@ -1,10 +1,10 @@
-let DivID = "latticeCanvas";
+var DivID3dBravais = "3dBravais";
 
-var divCanvas = document.getElementById(DivID);
-let divX = parseInt(divCanvas.style.width, 10);
-let divY = parseInt(divCanvas.style.height, 10);
+var divCanvas3dBravais = document.getElementById(DivID3dBravais);
+var divX3dBravais = parseInt(divCanvas3dBravais.style.width, 10);
+var divY3dBravais = parseInt(divCanvas3dBravais.style.height, 10);
 
-var lattice = function (p) {
+var bravais3d = function (p) {
   p.a = 200;
   p.atomSize = 20;
   p.repeat = false;
@@ -78,7 +78,7 @@ var lattice = function (p) {
   ];
 
   p.setup = function () {
-    p.createCanvas(divX, divY, p.WEBGL);
+    p.createCanvas(divX3dBravais, divY3dBravais, p.WEBGL);
     p.pixelDensity(1);
     p.ortho(-p.width / 2, p.width / 2, -p.height / 2, p.height / 2, 0, 5000);
 
@@ -111,15 +111,7 @@ var lattice = function (p) {
 
     if (!p.repeat) {
       p.drawCell(currentCell);
-
-      if (p.connect) {
-        p.connectAtoms(currentCell);
-      }
     } else {
-      if (p.connect) {
-        p.connectAtoms(currentCell);
-      }
-
       for (f = -2; f < 3; f++) {
         for (g = -2; g < 3; g++) {
           for (h = -2; h < 3; h++) {
@@ -128,6 +120,11 @@ var lattice = function (p) {
         }
       }
     }
+    
+    if (p.connect) {
+      p.connectAtoms(currentCell);
+    }
+
   };
 
   p.drawCell = function (cell, offsetX = 0, offsetY = 0, offsetZ = 0) {
@@ -214,19 +211,19 @@ var lattice = function (p) {
 };
 
 function toggleGrid(i) {
-  latticeCanvas.changeGrid(i);
+  sBravais3d.changeGrid(i);
 }
 
 function toggleRepeat() {
-  latticeCanvas.repeat = !latticeCanvas.repeat;
+  sBravais3d.repeat = !sBravais3d.repeat;
 }
 
 function toggleConnect() {
-  latticeCanvas.connect = !latticeCanvas.connect;
+  sBravais3d.connect = !sBravais3d.connect;
 }
 
 function toggleOrtho() {
-  latticeCanvas.toggleOrtho();
+  sBravais3d.toggleOrtho();
 }
 
-var latticeCanvas = new p5(lattice, DivID);
+var sBravais3d = new p5(bravais3d, DivID3dBravais);
