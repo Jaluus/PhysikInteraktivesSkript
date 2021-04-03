@@ -6,17 +6,111 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>Lattice tests</p>
-    <div style="height: 600px; width: 600px; margin: auto" id="3dBravais"></div>
-    <br />
-    <input onclick="toggleOrtho()" type="checkbox" checked /> Orthographic
-    Camera <input onclick="toggleRepeat()" type="checkbox" /> Repeat
-    <input onclick="toggleConnect()" type="checkbox" /> Connect Closest
-    <br />
-    <button onclick="toggleGrid(0)">SC</button>
-    <button onclick="toggleGrid(1)">BCC</button>
-    <button onclick="toggleGrid(2)">FCC</button>
-    <button onclick="toggleGrid(3)">DIAMOND</button>
+    <div>
+      <p>3D Lattice</p>
+      <div
+        style="height: 400px; width: 400px"
+        class="canvas"
+        id="3dBravais"
+      ></div>
+      <br />
+      <input onclick="toggleOrtho()" type="checkbox" checked /> Orthographic
+      Camera <input onclick="toggleConnect()" type="checkbox" /> Connect Closest
+      <br />
+      <br />
+      Gitter:
+      <select name="Gittertypen" id="3dBravaisSelect">
+        <option disabled>──Cubic──</option>
+        <option value="SC">Simple</option>
+        <option value="BC">Body Centered</option>
+        <option value="FC">Face Centered</option>
+        <option disabled>──Tetragonal──</option>
+        <option value="ST">Simple</option>
+        <option value="BT">Body Centered</option>
+        <option disabled>──Orthorhombic──</option>
+        <option value="SO">Simple</option>
+        <option value="BO">Body Centered</option>
+        <option value="FO">Face Centered</option>
+        <option value="EO">End Centered</option>
+        <option disabled>──Hexagonal──</option>
+        <option value="SH">Simple</option>
+        <option disabled>──Monoclinic──</option>
+        <option value="SM">Simple</option>
+        <option value="EM">End Centered</option>
+        <option disabled>──Trigonal──</option>
+        <option value="SD">Simple</option>
+        <option disabled>──Triclinic──</option>
+        <option value="SE">Simple</option>
+        <option disabled>──Special──</option>
+        <option value="DIAMOND">Diamond</option>
+      </select>
+      <br />
+      <br />
+      <div style="width: 50%; margin: auto" class="row">
+        <div class="column">
+          <input
+            type="range"
+            min="50"
+            max="300"
+            value="200"
+            class="slider"
+            id="3dBravaisSliderA"
+          />
+          <br />a
+          <br />
+          <input
+            type="range"
+            min="50"
+            max="300"
+            value="200"
+            class="slider"
+            id="3dBravaisSliderB"
+          />
+          <br />b
+          <br />
+          <input
+            type="range"
+            min="50"
+            max="300"
+            value="200"
+            class="slider"
+            id="3dBravaisSliderC"
+          />
+          <br />c
+        </div>
+        <div class="column">
+          <input
+            type="range"
+            min="-100"
+            max="100"
+            value="0"
+            class="slider"
+            id="3dBravaisSliderAlpha"
+          />
+          <br />Alpha
+          <br />
+          <input
+            type="range"
+            min="-100"
+            max="100"
+            value="0"
+            class="slider"
+            id="3dBravaisSliderBeta"
+          />
+          <br />Beta
+          <br />
+          <input
+            type="range"
+            min="-100"
+            max="100"
+            value="0"
+            class="slider"
+            id="3dBravaisSliderGamma"
+          />
+          <br />Gamma
+        </div>
+      </div>
+    </div>
   </body>
   <script src="3DBravais.js"></script>
 </html>

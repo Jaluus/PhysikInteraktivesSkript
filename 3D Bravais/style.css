@@ -12,8 +12,15 @@ button {
   margin: 1em;
 }
 
-#latticeCanvas {
+.canvas {
   height: 600px;
   width: 600px;
   margin: auto;
+}
+
+.row {
+  display: flex;
+}
+.column {
+  flex: 50%;
 }

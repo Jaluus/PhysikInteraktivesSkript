@@ -78,8 +78,8 @@ var bravais2d = function(p){
         radius = 5
         p.fill(255,0,0)
         p.ellipse(0,0,radius)
-        p.fill(0,0,255)
-        p.ellipse(10,10,radius)
+        // p.fill(0,0,255)
+        // p.ellipse(10,10,radius)
         p.pop()
         //move one Cell over
         p.translate(a,0)

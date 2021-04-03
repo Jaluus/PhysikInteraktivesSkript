@@ -6,49 +6,51 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <p>2D Lattice</p>
-    <div
-      style="height: 400px; width: 800px"
-      class="canvas"
-      id="2dBravais"
-    ></div>
-    <br />
-    Gitter:
-    <select name="Gittertypen" id="2dBravaisSelect">
-      <option value="qua">Quadratisch</option>
-      <option value="rec">Rechtwinklig</option>
-      <option value="sch">Schiefwinklig</option>
-      <option value="zen">Zentriert-rechteckig</option>
-      <option value="hex">Hexagonal</option>
-    </select>
-    <br />
-    <br />
-    <input
-      type="range"
-      min="10"
-      max="100"
-      value="50"
-      class="slider"
-      id="2dBravaisSliderA"
-    />A1
-    <br />
-    <input
-      type="range"
-      min="10"
-      max="100"
-      value="50"
-      class="slider"
-      id="2dBravaisSliderB"
-    />A2
-    <br />
-    <input
-      type="range"
-      min="-50"
-      max="50"
-      value="0"
-      class="slider"
-      id="2dBravaisSliderC"
-    />Theta
+    <div>
+      <p>2D Lattice</p>
+      <div
+        style="height: 400px; width: 400px"
+        class="canvas"
+        id="2dBravais"
+      ></div>
+      <br />
+      Gitter:
+      <select name="Gittertypen" id="2dBravaisSelect">
+        <option value="qua">Quadratisch</option>
+        <option value="rec">Rechtwinklig</option>
+        <option value="sch">Schiefwinklig</option>
+        <option value="zen">Zentriert-rechteckig</option>
+        <option value="hex">Hexagonal</option>
+      </select>
+      <br />
+      <br />
+      <input
+        type="range"
+        min="10"
+        max="100"
+        value="50"
+        class="slider"
+        id="2dBravaisSliderA"
+      />A1
+      <br />
+      <input
+        type="range"
+        min="10"
+        max="100"
+        value="50"
+        class="slider"
+        id="2dBravaisSliderB"
+      />A2
+      <br />
+      <input
+        type="range"
+        min="-50"
+        max="50"
+        value="0"
+        class="slider"
+        id="2dBravaisSliderC"
+      />Theta
+    </div>
   </body>
   <script src="2DBravais.js"></script>
 </html>
