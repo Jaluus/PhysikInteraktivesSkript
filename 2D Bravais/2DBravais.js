@@ -26,26 +26,66 @@ var bravais2d = function(p){
   }
 
   p.draw = function(){
-    p.background(220);
+    p.background(210);
+
+    SliderC2dBravais.disabled = false
+    SliderB2dBravais.disabled = false
 
     a = parseInt(SliderA2dBravais.value,10)
     b = parseInt(SliderB2dBravais.value,10)
     c = parseInt(SliderC2dBravais.value,10)
     latticeType = Select2dBravais.value
+
+    if (latticeType === "qua"){
+      //Done
+      b = a
+      c = 0
+      SliderB2dBravais.disabled = true
+      SliderC2dBravais.disabled = true
+    }
+    else if (latticeType === "sch"){
+      //Done
+    }
+    else if (latticeType === "rec"){
+      //Done
+      c = 0;
+      SliderC2dBravais.disabled = true;
+    }
+    else if (latticeType === "zen"){
+      //Done
+      c = parseFloat(a)/2
+      SliderC2dBravais.disabled = true;
+    }
+    else if (latticeType === "hex"){
+      //Done
+      b = (3**(1/2) / 2) * parseFloat(a)
+      c = parseFloat(a)/2
+      SliderB2dBravais.disabled = true;
+      SliderC2dBravais.disabled = true;
+    }
     
-    for(i=0;i*a<p.width;i++){
+    //Each layer
+    for(i=0;i*b<p.height;i++){
       p.push()
-      let offset = (i*c) % (b-1)
-      p.translate(0,offset)
-      for(j=0;j*b<p.height*1.2;j++){
+      //Offset to the Right for each Layer
+      let offset = (i*c) % (a)
+      p.translate(offset+a/2,b/2)
+
+      //each Atom in the Layer i
+      for(j=0;j*a<p.width*1.2;j++){
         //Draw the Cell
+        p.push()
+        radius = 5
         p.fill(255,0,0)
-        p.ellipse(0,0,5)
-        p.noFill()
-        p.translate(0,b)
+        p.ellipse(0,0,radius)
+        p.fill(0,0,255)
+        p.ellipse(10,10,radius)
+        p.pop()
+        //move one Cell over
+        p.translate(a,0)
       }
       p.pop()
-      p.translate(a,0)
+      p.translate(0,b)
     }
   }
 }

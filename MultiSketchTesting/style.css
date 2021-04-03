@@ -17,3 +17,10 @@ button {
   width: 600px;
   margin: auto;
 }
+
+.row {
+  display: flex;
+}
+.column {
+  flex: 50%;
+}

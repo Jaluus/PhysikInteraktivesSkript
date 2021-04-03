@@ -17,6 +17,7 @@ var bravais3d = function (p) {
   let currentCell;
 
   let SC_arr = [
+    //x,y,z,color
     [0, 0, 0, 0],
     [0, 0, p.a, 0],
     [0, p.a, 0, 0],
@@ -77,6 +78,13 @@ var bravais3d = function (p) {
     [p.a, 0, p.a, 0],
   ];
 
+  p.mouseInFrame = function(){
+    if(p.mouseX < p.width && p.mouseX > 0 && p.mouseY > 0 && p.mouseY < p.height){
+      return true
+    }
+    return false
+  }
+
   p.setup = function () {
     p.createCanvas(divX3dBravais, divY3dBravais, p.WEBGL);
     p.pixelDensity(1);
@@ -86,15 +94,17 @@ var bravais3d = function (p) {
   };
 
   p.draw = function () {
-    p.background(255);
+    p.background(210);
+
     p.noStroke();
+    p.translate(0,0,-100)
     p.pointLight(255, 255, 255, 0, 0, 300);
 
-    if (p.mouseIsPressed) {
+    if (p.mouseIsPressed && p.mouseInFrame()) {
       currentAngleX -= p.pmouseX - p.mouseX;
       currentAngleY += p.pmouseY - p.mouseY;
     }
-
+    
     p.rotateY(currentAngleX / 100);
     p.rotateZ(currentAngleY / 100);
 
@@ -111,7 +121,15 @@ var bravais3d = function (p) {
 
     if (!p.repeat) {
       p.drawCell(currentCell);
+
+      if (p.connect) {
+        p.connectAtoms(currentCell);
+      }
     } else {
+      if (p.connect) {
+        p.connectAtoms(currentCell);
+      }
+
       for (f = -2; f < 3; f++) {
         for (g = -2; g < 3; g++) {
           for (h = -2; h < 3; h++) {
@@ -120,11 +138,6 @@ var bravais3d = function (p) {
         }
       }
     }
-    
-    if (p.connect) {
-      p.connectAtoms(currentCell);
-    }
-
   };
 
   p.drawCell = function (cell, offsetX = 0, offsetY = 0, offsetZ = 0) {

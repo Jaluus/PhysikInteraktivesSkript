@@ -8,17 +8,18 @@
   <body>
     <p>2D Lattice</p>
     <div
-      style="height: 500px; width: 400px"
+      style="height: 400px; width: 800px"
       class="canvas"
       id="2dBravais"
     ></div>
     <br />
+    Gitter:
     <select name="Gittertypen" id="2dBravaisSelect">
-      <option value="1">Quadratisch</option>
-      <option value="2">Schiefwinklig</option>
-      <option value="3">Rechtwinklig</option>
-      <option value="4">Zentriert-rechteckig</option>
-      <option value="5">Hexagonal</option>
+      <option value="qua">Quadratisch</option>
+      <option value="rec">Rechtwinklig</option>
+      <option value="sch">Schiefwinklig</option>
+      <option value="zen">Zentriert-rechteckig</option>
+      <option value="hex">Hexagonal</option>
     </select>
     <br />
     <br />
@@ -29,7 +30,8 @@
       value="50"
       class="slider"
       id="2dBravaisSliderA"
-    />A
+    />A1
+    <br />
     <input
       type="range"
       min="10"
@@ -37,7 +39,8 @@
       value="50"
       class="slider"
       id="2dBravaisSliderB"
-    />B
+    />A2
+    <br />
     <input
       type="range"
       min="-50"
@@ -45,7 +48,7 @@
       value="0"
       class="slider"
       id="2dBravaisSliderC"
-    />C
+    />Theta
   </body>
   <script src="2DBravais.js"></script>
 </html>
