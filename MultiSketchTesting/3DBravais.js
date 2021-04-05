@@ -25,13 +25,15 @@ var bravais3d = function (p) {
   p.b = 200;
   p.c = 200;
 
+  let zoom = 0;
+
   p.atomSize = 20;
   p.repeat = false;
   p.connect = false;
   p.orthoCam = true;
 
   let currentAngleX = 45;
-  let currentAngleY = 45;
+  let currentAngleY = 35;
 
   let currentCell;
 
@@ -123,7 +125,7 @@ var bravais3d = function (p) {
     }
     if (type == "S"){
       return S_arr;
-      }
+    }
     else if (type == "B"){
       return BC_arr;
     }
@@ -135,14 +137,28 @@ var bravais3d = function (p) {
     }
   }
 
+  p.mouseWheel = function(event) {
+    //move the square according to the vertical scroll amount
+    zoom += event.delta;
+    //uncomment to block page scrolling
+    //return false;
+  }
+
   p.rotateTheLattice = function(){
+    if (!p.orthoCam) {
+    p.translate(0,0,zoom)
+    }
+    else{
+      zoom = 0
+    }
+
     if (p.mouseIsPressed && p.mouseInFrame()) {
       currentAngleX -= p.pmouseX - p.mouseX;
       currentAngleY += p.pmouseY - p.mouseY;
     }
 
     p.rotateY(currentAngleX / 100);
-    p.rotateZ(currentAngleY / 100);
+    p.rotateX(currentAngleY / 100);
   }
   
   p.drawPerimeter = function() {
@@ -330,14 +346,16 @@ var bravais3d = function (p) {
       }
     }
   };
-
+  
   p.drawCell = function (cell, offsetX = 0, offsetY = 0, offsetZ = 0) {
     for (i = 0; i < cell.length; i++) {
       p.push();
+      //[p.c+p.b*Math.tan(p.e), p.b+p.a*Math.tan(p.f), p.a+p.c* Math.tan(p.d), 0]
+      //p.translate(offsetX*Math.tan(p.e),offsetY*Math.tan(p.f), offsetZ* Math.tan(p.d))
       p.translate(
-        cell[i][0] + offsetX,
-        cell[i][1] + offsetY,
-        cell[i][2] + offsetZ
+        cell[i][0] + offsetX + offsetY * Math.tan(p.e),
+        cell[i][1] + offsetY + offsetZ * Math.tan(p.f),
+        cell[i][2] + offsetZ + offsetX * Math.tan(p.d)
       );
       p.fill(250 * cell[i][3], 250 * (1 - cell[i][3]), 0);
       p.noStroke()

@@ -18,8 +18,14 @@ button {
   margin: auto;
 }
 
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column;
+  }
+}
 .row {
   display: flex;
+  flex-direction: row;
 }
 .column {
   flex: 50%;
