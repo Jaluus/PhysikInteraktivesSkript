@@ -12,6 +12,8 @@
 *.cb2
 .*.lb
 
+MultiSketchTesting/
+
 ## Intermediate documents:
 *.dvi
 *.xdv

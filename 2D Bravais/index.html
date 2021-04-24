@@ -6,50 +6,71 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <div>
+    <div #2dLattice>
       <p>2D Lattice</p>
       <div
-        style="height: 400px; width: 400px"
+        style="height: 400px; width: 800px"
         class="canvas"
         id="2dBravais"
       ></div>
       <br />
-      Gitter:
+      Lattice:
       <select name="Gittertypen" id="2dBravaisSelect">
-        <option value="qua">Quadratisch</option>
-        <option value="rec">Rechtwinklig</option>
-        <option value="sch">Schiefwinklig</option>
-        <option value="zen">Zentriert-rechteckig</option>
-        <option value="hex">Hexagonal</option>
-      </select>
+        <option value="qua">Square</option>
+        <option value="rec">Rectangle</option>
+        <option value="sch">Oblique</option>
+        <option value="zen">Centered Rectangular</option>
+        <option value="hex">Hexagonal</option></select
+      ><br /><input onclick="toggleBasis()" type="checkbox" /> Basis
       <br />
-      <br />
+      <p>Lattice Parameters</p>
       <input
         type="range"
-        min="10"
-        max="100"
-        value="50"
+        min="60"
+        max="160"
+        value="100"
         class="slider"
         id="2dBravaisSliderA"
-      />A1
+      />A
       <br />
       <input
         type="range"
-        min="10"
-        max="100"
-        value="50"
+        min="60"
+        max="150"
+        value="100"
         class="slider"
         id="2dBravaisSliderB"
-      />A2
+      />B
       <br />
       <input
         type="range"
-        min="-50"
-        max="50"
+        min="-75"
+        max="75"
         value="0"
         class="slider"
         id="2dBravaisSliderC"
       />Theta
+      <br />
+      <div hidden="true" id="2dBravaisBasisParams">
+        <p>Basis Parameters</p>
+        <input
+          type="range"
+          min="-20"
+          max="20"
+          value="10"
+          class="slider"
+          id="2dBravaisSliderU"
+        />U
+        <br />
+        <input
+          type="range"
+          min="-20"
+          max="20"
+          value="10"
+          class="slider"
+          id="2dBravaisSliderV"
+        />V
+      </div>
     </div>
   </body>
   <script src="2DBravais.js"></script>
