@@ -52,8 +52,8 @@ var bravais2d = function (p) {
     let uf = 0;
     let vf = 0;
     if (!basisParamsHidden) {
-      uf = parseInt(SliderU2dBravais.value, 10);
-      vf = parseInt(SliderV2dBravais.value, 10);
+      uf = parseInt(SliderU2dBravais.value, 10) * 0.01;
+      vf = parseInt(SliderV2dBravais.value, 10) * 0.01;
     }
     latticeType = Select2dBravais.value;
 
@@ -126,25 +126,28 @@ var bravais2d = function (p) {
 
       //each Atom in the Layer i
       for (
-        let j = -parseInt(xatoms / 2) - 1;
-        j <= parseInt(xatoms / 2) + 1;
+        let j = -parseInt(xatoms / 2) - 4;
+        j <= parseInt(xatoms / 2) + 4;
         j++
       ) {
         //Check for overlap
-        if (a * j + offsetx > p.width / 4) {
-          break;
-        }
+        // if (a * j + offsetx > p.width / 4) {
+        //   break;
+        // }
         // if (a * j + offset - radius / 2 < -p.width / 4) {
         //   continue;
         // }
         p.push();
         p.translate(a * j + offsetx, 0);
+        if (!(i == 0 && j == 0)) {
+          p.stroke(255, 0, 0);
+          //if (a * (j + 1) <= p.width / 4)
+          p.line(0, 0, a, 0);
+          p.line(0, 0, -b * Math.sin(c), -b * Math.cos(c));
+        }
         p.fill(255, 0, 0);
         p.noStroke();
-        p.drawBasis(a * j + offsetx, offsety);
-        // p.fill(0,0,255)
-        // p.ellipse(10,10,radius)
-        //move one Cell over
+        p.drawBasis(i, j, a, b, c, u, v);
         p.pop();
       }
       p.pop();
@@ -168,15 +171,25 @@ var bravais2d = function (p) {
   };
 
   p.drawRezi = function () {
-    let ra = ((2 * Math.PI) / a) * 800;
-    let rb = ((2 * Math.PI) / b) * 800;
+    // p.min(b, Math.cos(Math.PI / 2 - c) * b)
+    let bn = p.max(b, Math.sqrt(a ** 2 + b ** 2 - 2 * a * b * Math.cos(c)));
+    let ra = ((2 * Math.PI) / (b * Math.cos(c))) * 800;
+    let rb = ((2 * Math.PI) / (a * Math.sin(c + Math.PI / 2))) * 800;
     let rc = c;
+    //Background Rectangle
+    p.fill(0);
+    p.rect(p.width / 2, 0, p.width, p.height);
+
+    //Translate the Coordsystem
     p.push();
     p.translate((p.width / 2) * 1.5, p.height * 0.5);
-    p.strokeWeight(4);
-    p.line(0, 0, 0, -ra);
-    p.line(0, 0, -rb * Math.cos(c), rb * Math.sin(c));
-    p.strokeWeight(1);
+
+    //draw the VectorLines
+    // p.stroke(0255);
+    // p.strokeWeight(4);
+    // p.line(0, 0, 0, -ra);
+    // p.line(0, 0, rb * Math.cos(c), -rb * Math.sin(c));
+    // p.strokeWeight(1);
 
     let xatoms = p.width / 2 / (rb * Math.cos(rc));
     let yatoms = p.height / ra;
@@ -210,35 +223,53 @@ var bravais2d = function (p) {
         // }
         p.push();
         p.translate(0, ra * j - offsety);
-        p.fill(0, 0, 255);
+
+        let real = 1 + Math.cos(2 * Math.PI * (i * v + j * u));
+        let img = Math.sin(2 * Math.PI * (i * v + j * u));
+        let S = Math.sqrt(real ** 2 + img ** 2);
+
+        p.fill(S * 255);
         p.noStroke();
-        p.drawBasis(offsetx, ra * j - offsety);
+
+        p.ellipse(0, 0, radius);
         p.pop();
       }
       p.pop();
     }
-    p.textSize(20);
-    p.textStyle(p.BOLD);
-    p.fill(0);
-    let textAng = p.atan(40 / rb) + Math.PI / 2;
-    p.text("a* = " + Math.round((ra / 800) * 1000) / 1000, 10, -ra / 2);
-    p.text(
-      "b* = " + Math.round((rb / 800) * 1000) / 1000,
-      -(rb / 2) * Math.sin(rc + textAng),
-      -(rb / 2) * Math.cos(rc + textAng) + 5
-    );
+    // p.noStroke();
+    // p.fill(255);
+    // p.textSize(20);
+    // p.textStyle(p.BOLD);
+    // let textAng = p.atan(40 / rb) - Math.PI;
+    // p.text("a* = " + Math.round((ra / 800) * 1000) / 1000, 10, -ra / 2);
+    // p.text(
+    //   "b* = " + Math.round((rb / 800) * 1000) / 1000,
+    //   -(rb / 2) * Math.sin(rc + textAng),
+    //   -(rb / 2) * Math.cos(rc + textAng) + 5
+    // );
     p.pop();
   };
 
-  p.drawBasis = function (x, y) {
+  p.drawBasis = function (i, j, a, b, c, u, v) {
+    p.noStroke();
+    p.stroke(255, 0, 0);
     p.ellipse(0, 0, radius);
 
-    if (!basisParamsHidden) {
-      if (x + u > p.width / 4 || x + u < -p.width / 4) {
-        return;
-      }
-      p.ellipse(u, v, radius);
+    let xrel = u * b * Math.sin(c);
+    let y = u * b * Math.cos(c);
+
+    let x = a * v + xrel;
+
+    let xAbs = x + a * j + ((i * b * Math.sin(c)) % a);
+
+    if (xAbs > p.width / 4 || basisParamsHidden) {
+      return;
     }
+    p.stroke(0);
+    p.strokeWeight(2);
+    p.ellipse(x, y, radius);
+    p.noStroke();
+    p.ellipse();
   };
 };
 

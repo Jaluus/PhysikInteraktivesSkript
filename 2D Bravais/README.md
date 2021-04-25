@@ -1,9 +1,9 @@
 ## 2D Bravais
 
 # Next Up
-1. Base in reciprocal lattice
-2. Find out how Structure Factors work and how to implement them -> k/h are encoded in i/j
-3. Nice Looking UI
+1. Multiple Refraction Factors
+2. Change Size and Charge of the atoms
+3. Nice Looking UI -> Thats gonna be a looot of CSS
 4. Split up the reciprocal and normal Lattice in 2 different Windows?
 
 # Optimiziations
