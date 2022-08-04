@@ -24,3 +24,7 @@ button {
 .column {
   flex: 50%;
 }
+
+.millerInput {
+  width: 40px;
+}

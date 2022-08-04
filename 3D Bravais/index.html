@@ -4,18 +4,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <meta charset="utf-8" />
+    <title>Hey, Lena!😜</title>
   </head>
   <body>
     <div>
       <p>3D Lattice</p>
       <div
-        style="height: 400px; width: 400px"
+        style="height: 500px; width: 500px"
         class="canvas"
         id="3dBravais"
       ></div>
       <br />
       <input onclick="toggleOrtho()" type="checkbox" checked /> Orthographic
       Camera <input onclick="toggleConnect()" type="checkbox" /> Connect Closest
+      <input onclick="toggleRepeat()" type="checkbox" /> Repeat
       <br />
       <br />
       Gitter:
@@ -108,6 +110,33 @@
             id="3dBravaisSliderGamma"
           />
           <br />Gamma
+        </div>
+        <div class="column">
+          <p>Miller Params</p>
+          Miller a
+          <input
+            class="millerInput"
+            type="number"
+            value="1"
+            step="1"
+            id="3dBravaisMillerA"
+          />
+          <br />Miller b
+          <input
+            class="millerInput"
+            type="number"
+            value="1"
+            step="1"
+            id="3dBravaisMillerB"
+          />
+          <br />Miller c
+          <input
+            class="millerInput"
+            type="number"
+            value="1"
+            step="1"
+            id="3dBravaisMillerC"
+          />
         </div>
       </div>
     </div>
